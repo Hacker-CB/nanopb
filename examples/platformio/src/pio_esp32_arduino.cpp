@@ -1,13 +1,14 @@
-#include <stdio.h>
+#include <Arduino.h>
 
-#include "pb_encode.h"
-#include "pb_decode.h"
+#include <pb_encode.h>
+#include <pb_decode.h>
 
 #include "test.h"
 
 #include "pio_without_options.pb.h"
 
-int app_main() {
+void setup(){
+    Serial.begin(115200);
 
     int status = 0;
 
@@ -32,6 +33,8 @@ int app_main() {
     TEST(pb_decode(&istream, &TestMessageWithoutOptions_msg, &decoded));
 
     TEST(decoded.number == 45);
+}
 
-    return status;
+void loop()
+{
 }
